@@ -297,13 +297,8 @@ VanitySearch::VanitySearch(Secp256K1 *secp, vector<std::string> &inputPrefixes,s
     seed += Timer::getSeed(32);
   }
 
-  // Protect seed against "seed search attack" using pbkdf2_hmac_sha512
-  string salt = "VanitySearch";
   unsigned char hseed[64];
-  pbkdf2_hmac_sha512(hseed, 64, (const uint8_t *)seed.c_str(), seed.length(),
-    (const uint8_t *)salt.c_str(), salt.length(),
-    2048);
-  startKey.SetInt32(0);
+startKey.SetBase16("0000000000000000000000000000000040000000000000000000000000000000");
   sha256(hseed, 64, (unsigned char *)startKey.bits64);
 
   char *ctimeBuff;

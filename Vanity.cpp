@@ -61,11 +61,11 @@ VanitySearch::VanitySearch(Secp256K1 *secp, vector<std::string> &inputPrefixes,s
   lastRekey = 0;
   prefixes.clear();
 
-  // Create a 65536 items lookup table
+  // Create a 1048576 items lookup table
   PREFIX_TABLE_ITEM t;
   t.found = true;
   t.items = NULL;
-  for(int i=0;i<65536;i++)
+  for(int i=0;i<1048576;i++)
     prefixes.push_back(t);
 
   // Check is inputPrefixes contains wildcard character
